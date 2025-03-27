@@ -1,0 +1,31 @@
+import java.util.Scanner;
+public class CurrencyConverter {
+    public static double getExchangeRate(String baseCurrency, String targetCurrency) {
+        if (baseCurrency.equals("USD") && targetCurrency.equals("INR")) {
+            return 83.27;
+        } else if (baseCurrency.equals("EUR") && targetCurrency.equals("INR")) {
+            return 90.00;
+        } else if (baseCurrency.equals("INR") && targetCurrency.equals("USD")) {
+            return 0.012;
+        } else {
+            return -1; 
+        }
+    }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter base currency (e.g., USD, EUR, INR): ");
+        String baseCurrency = scanner.next().toUpperCase();
+        System.out.print("Enter target currency (e.g., USD, EUR, INR): ");
+        String targetCurrency = scanner.next().toUpperCase();
+        System.out.print("Enter amount to convert: ");
+        double amount = scanner.nextDouble();
+        double exchangeRate = getExchangeRate(baseCurrency, targetCurrency);
+        if (exchangeRate == -1) {
+            System.out.println("Error: Invalid currency pair.");
+        } else {
+            double convertedAmount = amount * exchangeRate;
+            System.out.printf("Converted Amount: %.2f %s\n", convertedAmount, targetCurrency);
+        }
+        scanner.close();
+    }
+}
